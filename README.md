@@ -1,59 +1,21 @@
 # yar2dev_infra
 yar2dev Infra repository
 
-# Знакомство с облачной инфраструктурой и облачными сервисами
+# ДЗ№3 Деплой тестового приложения
 
-
-## Часть 1
-Для подключения к хосту "someinternalhost" в одну команду использользуется ключ -J (ProxyJump)
-
-ssh -i ~/.ssh/appuser -J appuser@178.154.222.209 appuser@10.128.0.5
-
-порядок действий для подключения командой ssh someinternalhost:
-
-если отстствует файл ~/.ssh/config создадим его (touch ~/.ssh/config)
+testapp_IP = 62.84.118.249
+testapp_port = 9292
 
 
 
+Для запуска получения инстанса с установленным приложением запустить:
 
-Внесем в файл следующие строки:
-
-###bastion host
-Host bastion
-
-  HostName 178.154.222.209
+yc compute instance create \
+  --name reddit-app-autosetup \
+  --hostname reddit-app-autosetup \
+  --memory=4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --metadata serial-port-enable=1 \
+  --metadata-from-file user-data=./metadata.yaml
   
-  User appuser
-  
-  IdentityFile ~/.ssh/appuser
-
-
-
-###someinternalhost
-
-Host someinternalhost
-
-  HostName 10.128.0.5
-  
-  ProxyJump bastion
-  
-  User appuser
-  
-  IdentityFile ~/.ssh/appuser
-
-
-Далее выполним команду 
-
-
-ssh someinternalhost
-
-
-## Часть 2
-
-В скрипте **setupvpn.sh** изменен метод установки пакета pritunl, ввиду отстутствия его в репозитарии, с repo.pritunl.com на github, так же дополнительно устанавливаются openvpn pritunl-ndppd пакеты.
-
-
-
-bastion_IP = 178.154.222.209
-
-someinternalhost_IP = 10.128.0.5
