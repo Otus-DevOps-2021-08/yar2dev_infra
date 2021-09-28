@@ -1,0 +1,14 @@
+[Unit]
+Description=Puma server
+After=mongod.service
+Requires=mongod.service
+
+[Service]
+Type=simple
+Type=forking
+WorkingDirectory=/home/ubuntu/reddit
+ExecStart=/usr/bin/bundle exec puma
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
