@@ -1,0 +1,6 @@
+cloud_id
+folder_id                = "1111111111"
+zone                     = "ru-central1-a"
+access_key               = "22222222222222"
+service_key              = ""
+service_account_key_file = "../YC/terraform/key.json"
