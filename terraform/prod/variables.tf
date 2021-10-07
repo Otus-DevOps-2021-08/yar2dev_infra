@@ -25,6 +25,8 @@ variable service_account_key_file {
 variable private_key_path {
   description = "ubuntu private key"
 }
+
+
 variable zone_app {
   description = "Zone app"
   default     = "ru-central1-a"
@@ -49,21 +51,7 @@ variable app_disk_image {
   default     = "reddit-app-base"
 }
 
-variable bucket_secret_key {
-  description = "Yandex Cloud bucket secret key"
-  default     = ""
-}
-
-variable access_key {
-  description = "Yandex Cloud access_key"
-  default     = ""
-}
-variable tf_state_file {
-  description = "Yandex Cloud tf_state_file"
-  default     = "terraform.tfstate"
-}
-
-variable tf_bucket {
-  description = "Yandex Cloud tf_bucket"
-  default     = ""
+variable db_disk_image {
+  description = "Disk image for reddit app"
+  default     = "reddit-db-base"
 }
