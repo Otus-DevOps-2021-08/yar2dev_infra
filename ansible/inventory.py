@@ -60,9 +60,15 @@ class AnsbleInventory(object):
 terraform_command = "(cd ../terraform/stage && terraform output)"
 app_address = []
 db_address = []
+skip = False
 
-with Popen(terraform_command, stdout=PIPE, universal_newlines=True, shell=True) as process:
 
+with Popen(terraform_command, stdout=PIPE, stderr=PIPE,universal_newlines=True, shell=True) as process:
+
+    for line in process.stderr:
+        skip = True
+
+#Parsing terraform output
     for line in process.stdout:
 
         if "external" in line:
@@ -76,5 +82,12 @@ with Popen(terraform_command, stdout=PIPE, universal_newlines=True, shell=True) 
                 line = line.split(" = ")
                 db_address.append(line[1])
 
+#if terraform output is present
+if skip != True:
+    AnsbleInventory()
 
-AnsbleInventory()
+else:
+
+    with open('inventory.json', 'r') as file:
+        read_file = file.read()
+    print(read_file)
