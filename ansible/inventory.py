@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #This script get addresses from terraform output and generate inventory json output for ansible
 import os
