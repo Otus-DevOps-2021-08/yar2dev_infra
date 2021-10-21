@@ -30,12 +30,12 @@ resource "yandex_compute_instance" "db" {
   }
 
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",
-      "sudo systemctl restart mongod"
-    ]
-  }
+ # provisioner "remote-exec" {
+ #   inline = [
+ #     "sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",
+ #     "sudo systemctl restart mongod"
+ #   ]
+ # }
 
 
   connection {
