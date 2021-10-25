@@ -32,23 +32,23 @@ resource "yandex_compute_instance" "app" {
     nat       = true
   }
 
-  provisioner "file" {
-    source      = "${path.module}/puma.service"
-    destination = "/tmp/puma.service"
-  }
+  #provisioner "file" {
+  #  source      = "${path.module}/puma.service"
+  #  destination = "/tmp/puma.service"
+  #}
 
-  provisioner "remote-exec" {
+  #provisioner "remote-exec" {
 
-    inline = [
-      "sudo sed -i s/127.0.0.1/'${var.db_url}'/g /tmp/puma.service"
-    ]
-  }
+  #  inline = [
+  #    "sudo sed -i s/127.0.0.1/'${var.db_url}'/g /tmp/puma.service"
+  #  ]
+  #}
 
 
 
-  provisioner "remote-exec" {
-    script = "${path.module}/deploy.sh"
-  }
+  #provisioner "remote-exec" {
+  #  script = "${path.module}/deploy.sh"
+  #}
 
 
   connection {
