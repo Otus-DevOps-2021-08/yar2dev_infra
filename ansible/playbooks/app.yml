@@ -1,0 +1,7 @@
+---
+- name: Configure and deploy puma
+  hosts: app
+  become: true
+  roles:
+    - app
+    - jdauphant.nginx
