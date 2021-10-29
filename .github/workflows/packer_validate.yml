@@ -17,7 +17,7 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v2
       - name: Validate
-      - run: |
+        uses: actions/checkout@v2
+        run: |
           packer validate -var-file=packer/variables.json.example packer/${{ matrix.packerfile }}
