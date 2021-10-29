@@ -1,0 +1,30 @@
+name: Terraform
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+
+
+jobs:
+  Terraform:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env:
+          - prod
+          - stage
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.12.8
+      - uses: actions/checkout@v2
+      - name: Init Terraform
+        working-directory: terraform/${{matrix.env}}
+        run: terraform init -backend=false
+      - name: Validate
+        working-directory: terraform/${{matrix.env}}
+        run: terraform validate
