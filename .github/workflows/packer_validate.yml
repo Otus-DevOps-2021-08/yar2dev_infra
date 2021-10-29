@@ -15,9 +15,8 @@ jobs:
           - ubuntu16.json
 
     runs-on: ubuntu-latest
-    name: packer
-
     steps:
       - name: Validate
-        uses: actions/checkout@v2
-        run: packer validate -var-file=packer/variables.json.example packer/${{ matrix.packerfile }}
+      - uses: actions/checkout@v2
+        run: |
+          packer validate -var-file=packer/variables.json.example packer/${{ matrix.packerfile }}
