@@ -6,6 +6,7 @@ on:
 
 jobs:
   packer:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         packerfile:
@@ -14,9 +15,9 @@ jobs:
           - immutable.json
           - ubuntu16.json
 
-    runs-on: ubuntu-latest
+
     steps:
-      - name: Validate
       - uses: actions/checkout@v2
-        run: |
+      - name: Validate
+      - run: |
           packer validate -var-file=packer/variables.json.example packer/${{ matrix.packerfile }}
