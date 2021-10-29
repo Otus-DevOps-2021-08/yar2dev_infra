@@ -2,7 +2,7 @@
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "files/key.json",
+            "service_account_key_file": "packer/files/key.json",
             "folder_id": "b1g57rqo8odl71qsg70r",
             "source_image_id": "fd869u2laf181s38k2cr",
             "image_name": "reddit-full",
@@ -20,22 +20,22 @@
     "provisioners": [
         {
             "type": "shell",
-            "script": "scripts/install_ruby.sh",
+            "script": "packer/scripts/install_ruby.sh",
             "execute_command": "sudo {{.Path}}"
         },
         {
             "type": "shell",
-            "script": "scripts/install_mongodb.sh",
+            "script": "packer/scripts/install_mongodb.sh",
             "execute_command": "sudo {{.Path}}"
         },
         {
             "type": "file",
-            "source": "files/puma.service",
+            "source": "packer/files/puma.service",
             "destination": "/tmp/puma.service"
         },
         {
             "type": "shell",
-            "script": "scripts/deploy_app.sh",
+            "script": "packer/scripts/deploy_app.sh",
             "execute_command": "sudo {{.Path}}"
         }
     ]
