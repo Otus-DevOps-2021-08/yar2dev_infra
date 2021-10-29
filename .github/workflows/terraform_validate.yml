@@ -15,7 +15,7 @@ jobs:
         env:
           - prod
           - stage
-    runs-on: ubuntu-latest
+
 
     steps:
       - uses: hashicorp/setup-terraform@v1
