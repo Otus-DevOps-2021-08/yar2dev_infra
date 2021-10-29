@@ -1,11 +1,13 @@
----
 name: Packer
+
 on:
   push:
+
   pull_request:
 
+
 jobs:
-  packer:
+  Packer:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,10 +16,6 @@ jobs:
           - db.json
           - immutable.json
           - ubuntu16.json
-
-
     steps:
-      - name: Validate
-        uses: actions/checkout@v2
-        run: |
-          packer validate -var-file=packer/variables.json.example packer/${{ matrix.packerfile }}
+      - uses: actions/checkout@v2
+      - run: packer validate -var-file=packer/variables.json.example packer/${{ matrix.packerfile }}
