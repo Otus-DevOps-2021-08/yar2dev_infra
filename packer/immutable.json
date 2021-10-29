@@ -2,7 +2,7 @@
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "../../../YC/serv-acc/key.json",
+            "service_account_key_file": "files/key.json",
             "folder_id": "b1g57rqo8odl71qsg70r",
             "source_image_id": "fd869u2laf181s38k2cr",
             "image_name": "reddit-full",
