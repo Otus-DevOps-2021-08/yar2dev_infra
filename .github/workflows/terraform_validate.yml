@@ -28,3 +28,22 @@ jobs:
       - name: Validate
         working-directory: terraform/${{matrix.env}}
         run: terraform validate
+
+
+
+  tflint:
+    strategy:
+      matrix:
+        folders:
+          - prod
+          - stage
+          - modules/app
+          - modules/db
+    runs-on: ubuntu-latest
+    steps:
+      - uses: terraform-linters/setup-tflint@v1
+      - uses: actions/checkout@v2
+      - name: run tflint
+        working-directory: terraform/${{ matrix.folders }}
+        run: |
+          tflint
