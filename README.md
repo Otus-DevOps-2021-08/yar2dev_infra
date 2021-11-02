@@ -2,17 +2,11 @@
 yar2dev Infra repository
 
 
-# ДЗ 9 Деплой и управление конфигурацией с Ansible
+# ДЗ 10 Ansible: работа с ролями и окружениями
 
-Создан плейбук с множеством тасков и тегов (reddit_app.yml)
-Запуск необходимого действия осуществляется с помощью указания парамера -- limit [db | app] и -- tags [db-tag | app-tag | deploy-tag]
 
-Далее внутри плейбука один сценарий разделен на два, один для запуска db на другой на app.(reddit_app2.yml)
-Теперь при запуске указывается только тег [db-tag | app-tag | deploy-tag]
+[![Terraform Validate Actions Status](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/workflows/terraform_validate/badge.svg)](https://github.com/yar2dev/yar2dev_infra/actions)
 
-Плейбук разделен на несколько файлов db.yml, app.yml, deploy.yml
-создан site.yml в который включили эти файлы.
+![Packer Validate](https://github.com/yar2dev/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/packer_validate.yml/badge.svg)
 
-Для удобства получения адресов инстансов создан скрипт inventory_yc.py, получающий IP адреса инстансов с Яндекс облака
-
-Плейбуки интегрированны в пакер.
+![Ansible Lint](https://github.com/yar2dev/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/ansible-lint.yml/badge.svg)
