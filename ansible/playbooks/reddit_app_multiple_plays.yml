@@ -28,12 +28,14 @@
       copy:
         src: files/puma.service
         dest: /etc/systemd/system/puma.service
+        mode: 0644
       notify: reload puma
 
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2
         dest: /home/ubuntu/db_config
+        mode: 0644
         owner: ubuntu
         group: ubuntu
 
