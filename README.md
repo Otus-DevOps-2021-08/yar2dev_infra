@@ -2,17 +2,30 @@
 yar2dev Infra repository
 
 
-# ДЗ 9 Деплой и управление конфигурацией с Ansible
+# ДЗ 10 Ansible: работа с ролями и окружениями
 
-Создан плейбук с множеством тасков и тегов (reddit_app.yml)
-Запуск необходимого действия осуществляется с помощью указания парамера -- limit [db | app] и -- tags [db-tag | app-tag | deploy-tag]
+Созданы структуры ролей для app и db командами ansible-galaxy init app и ansible-galaxy init db
+В созданные роли пернесены секции task, templates, handlers и files из плейбуков ansible/app.yml и ansible/db.yml
+В самих плейбуках теперь указаны вызовы соответствующих ролей.
 
-Далее внутри плейбука один сценарий разделен на два, один для запуска db на другой на app.(reddit_app2.yml)
-Теперь при запуске указывается только тег [db-tag | app-tag | deploy-tag]
+Созданы окружения stage и prod в директории ansible/environments в них перенесен файл динамической инвентаризации. По умолчанию вызывается окружение stage.
 
-Плейбук разделен на несколько файлов db.yml, app.yml, deploy.yml
-создан site.yml в который включили эти файлы.
+Для использования переменных для групп хостов созданы папки group_vars в каждом из окружении и параметризированы файлы app.yml и db.yml.
 
-Для удобства получения адресов инстансов создан скрипт inventory_yc.py, получающий IP адреса инстансов с Яндекс облака
+Через файл зависимостей requirements.yml из ansible-galaxy добавлена роль jdauphant.nginx.
+Роль jdauphant.nginx добавлена в плейбук app.yml.
 
-Плейбуки интегрированны в пакер.
+Создан ключевой файл vault.key для шифрования файла credentials.yml содержащим пароли создаваемых пользователей.
+Шифрование командами:
+ansible-vault encrypt environments/prod/credentials.yml
+ansible-vault encrypt environments/stage/credentials.yml
+Путь к ключевому файлу указан в ansible.cfg.
+
+В Github actions добавлены проверки для Ansibel, Terraform и Packer.
+В README.md добавлены бейджи статусов.
+
+
+![Ansible Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/ansible-lint.yml/badge.svg)
+![Packer Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/packer_validate.yml/badge.svg)
+![OTUS Tests](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/runtests.yml/badge.svg)
+![Terraform Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/terraform_validate.yml/badge.svg)

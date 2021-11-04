@@ -1,0 +1,20 @@
+name: Ansible
+
+on:
+  push:
+
+  pull_request:
+
+jobs:
+  Ansible-lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v2
+    - name: Lint Ansible Playbook
+      uses: ansible/ansible-lint-action@master
+      with:
+
+        targets: ""
