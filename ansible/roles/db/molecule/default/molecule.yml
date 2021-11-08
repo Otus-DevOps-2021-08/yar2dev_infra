@@ -1,0 +1,19 @@
+---
+driver:
+  name: ec2
+platforms:
+  - name: aws-ec2-ubuntu
+    image_owner: 099720109477
+    image_name: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*
+    instance_type: t2.micro
+    vpc_subnet_id: subnet-774d191d
+    instance_tags:
+      - Name: molecule_instance
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ./converge.yml
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra
