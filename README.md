@@ -24,7 +24,4 @@ Travis test db role [![Build Status](https://app.travis-ci.com/yar2dev/ansible-d
 
 
 
-![Ansible Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/ansible-lint.yml/badge.svg)
-![Packer Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/packer_validate.yml/badge.svg)
 ![OTUS Tests](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/runtests.yml/badge.svg)
-![Terraform Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/terraform_validate.yml/badge.svg)
