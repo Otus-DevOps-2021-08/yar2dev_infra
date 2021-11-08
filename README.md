@@ -2,27 +2,26 @@
 yar2dev Infra repository
 
 
-# ДЗ 10 Ansible: работа с ролями и окружениями
+# ДЗ 11 Разработка и тестирование Ansible ролей и плейбуков
+Travis test db role [![Build Status](https://app.travis-ci.com/yar2dev/ansible-db-role.svg?branch=master)]
 
-Созданы структуры ролей для app и db командами ansible-galaxy init app и ansible-galaxy init db
-В созданные роли пернесены секции task, templates, handlers и files из плейбуков ansible/app.yml и ansible/db.yml
-В самих плейбуках теперь указаны вызовы соответствующих ролей.
+При помощи Vagrant развернуты виртуальные машины на Virtualbox
+Конфигурация находится в Vagrantfile
 
-Созданы окружения stage и prod в директории ansible/environments в них перенесен файл динамической инвентаризации. По умолчанию вызывается окружение stage.
+Доработана роли app db, такси выделены в отдельные файлы.
+Параметризировнны файлы puma.yml и создан шаблон puma.service.j2 для создания сервиса.
 
-Для использования переменных для групп хостов созданы папки group_vars в каждом из окружении и параметризированы файлы app.yml и db.yml.
+Для работы веб сервиса через Ngnix добавлены дополнительные пременные в Vagrantfile
 
-Через файл зависимостей requirements.yml из ansible-galaxy добавлена роль jdauphant.nginx.
-Роль jdauphant.nginx добавлена в плейбук app.yml.
+Скорретирован путь к ролям для пакера и выполнена проверка.
 
-Создан ключевой файл vault.key для шифрования файла credentials.yml содержащим пароли создаваемых пользователей.
-Шифрование командами:
-ansible-vault encrypt environments/prod/credentials.yml
-ansible-vault encrypt environments/stage/credentials.yml
-Путь к ключевому файлу указан в ansible.cfg.
+При помощи Molecule проведены тесты db роли на созданном molecule инстансе.
 
-В Github actions добавлены проверки для Ansibel, Terraform и Packer.
-В README.md добавлены бейджи статусов.
+Роль db вынесена в отдельный репозитарий https://github.com/yar2dev/ansible-db-role, подключена в окружения stage и prod.
+
+Подключен TravisCI к созданному репозитарию, прогон тестов выполняется на AWS.
+Для использования AWS используются дополнительный модуль molecule-ec2.
+
 
 
 ![Ansible Validate](https://github.com/Otus-DevOps-2021-08/yar2dev_infra/actions/workflows/ansible-lint.yml/badge.svg)
