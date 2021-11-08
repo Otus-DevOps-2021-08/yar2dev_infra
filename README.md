@@ -3,7 +3,7 @@ yar2dev Infra repository
 
 
 # ДЗ 11 Разработка и тестирование Ansible ролей и плейбуков
-Travis test db role [![Build Status](https://app.travis-ci.com/yar2dev/ansible-db-role.svg?branch=master)]
+Travis test db role [![Build Status](https://app.travis-ci.com/yar2dev/ansible-db-role.svg?branch=master)](https://app.travis-ci.com/yar2dev/ansible-db-role)
 
 При помощи Vagrant развернуты виртуальные машины на Virtualbox
 Конфигурация находится в Vagrantfile
