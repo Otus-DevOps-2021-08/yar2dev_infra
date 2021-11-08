@@ -1,0 +1,24 @@
+language: python
+python: '3.9'
+sudo: true
+addons:
+  apt:
+    packages:
+    - python-pip
+install:
+- pip install ansible molecule molecule-ec2 boto boto3 testinfra
+- ansible --version
+- printf '[defaults]\nroles_path=../' >ansible.cfg
+script:
+
+- molecule create
+- molecule converge
+- molecule verify
+- molecule destroy
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+env:
+  global:
+  - EC2_REGION=eu-central-1
+  - secure: Ye/Mmfhxg72QY5IqAb7DsrMPY8OepcxqsNrSMQECvezzLeDY0aiDioCrqW52MGQyeJZzJCvLuh3YfnJnYgg9gdMr3rO9t9iFpJchQHkWIOC3NIMmcjrO7P/vWmuT9UKDCAeqM4ZOJvgpwhmBKdzbscmB5ETtl9FBSK9gvLnfHD6BVWCSAj2eMEBI5vnj1gpC3sppCgFmjFP7O4S4l6tRKvq9r+UQ/fu2O6YlDrhBEkG9Q4uyWcyntCHbHXvMbSD6ayPpGorJkGJwznb/uUjWl3xakDkwnWrd7X/jOKlC8jRM44vQCD9184uwtZPGnamrXWWKZCKG6BS3KB7Rf4B+zAxai1fld67eyeHMxRbtm5ihEMBvuUlpN1+hNN0/v74eaT6w8CGnOAf8tHBY+Tl9GQBBBF0HJVhINAILNiC17esA2Iui0j12Z2GQV3SFOUKV/QbGrodrm3alX7WFn4gu5rhFVmTmud1RjfmlW/7uXTnNZgUYD3/u4iDp+QHxt8EkFUUk3QoOvNEqHEVqtDAjkGwC+MqxwJH9+vx3/K906ntumFxR+dT1vD+auTC1wXJ2CfVjsjTRhN95Qr0wU5pSuWJ7DlizKj8Gvy/yL/UAOaOr7SkwC37wNlaMiWz16+EVXYpY62mNXCZq/A8thrEstKnnZiUGcYJge2Hi3OijJrQ=
+  - secure: hrfv0xGQaM/t+/aUBlQVYUVpZbI5/ImTtqVWwPtNZ6pHPqp9YGcthXx9m5DyVxxMebNQHOpMpC7DWIlWbuRRucjLfDwieqbjjRRKgVxGdDJLpejgJb5R+RNejqGGc8+lwlPKM0tP5hPgGBqYmUo52aZvb907N0aijgg8ehV+pZoA8d7N8afH9K1k2JKtVWjhPC2l0+kpdpfRzweVpEqelEWSPP7szpusNW8NDHZQWKifTo+unnuO3W4QX4v8SJ4GC9zeK+NMtP9i2S1BTzC1OcXr3VZpkw4OsUhSqrJIU3vJKL+6hWeHHnnT4/vNu5mtDGpCED0BBfN7QcH95nJ2d1D5rTEWjcmsuxSkLMOt2SLBYvf2HBOxWx9QbH+ZXxG2yOCyshaVf6SgIpHWkjdRvNRRIbSSof3idH4dGFujj6TeoaqC6tm3RE0l4e8pTDVrm2EYkOxD6BwpIEkXr0IUCCIAUsa/eewHoi/VOHBNzY6Ra5FqF+Q2oT2E+kjJJyxxgNd0XxSOu2+MXC1YdFk5Ond1MVR0SfSGHqRYxrXLgi2Q7ywCp1l14QUx69eZRI0TzAA5mCnM9CXseKOCye27ghuF2yEIqoa0sl95RTJ5oTwuI01junAmj0g4HL2kH/RrrF/mR7MqEBWHzsX3Qd8kPreUoXPpXkhILJst/dd49Mw=
