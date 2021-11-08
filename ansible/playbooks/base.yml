@@ -1,3 +1,4 @@
+---
 - name: Check && install python
   hosts: all
   become: true
