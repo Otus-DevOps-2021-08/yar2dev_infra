@@ -1,2 +1,7 @@
 - src: jdauphant.nginx
   version: v2.21.1
+# DB
+- src: https://github.com/yar2dev/ansible-db-role.git
+  scm: git
+  version: master
+  name: db

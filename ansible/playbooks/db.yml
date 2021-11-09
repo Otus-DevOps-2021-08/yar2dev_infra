@@ -1,6 +1,6 @@
 ---
-- name: Configure MongoDB
-  hosts: db
+- name: Packer DB
   become: true
+  hosts: all
   roles:
     - db
